@@ -36,7 +36,10 @@ if PACKAGE_firewall
 	config PACKAGE_firewall-FULLCONENAT
 		bool "Use FULLCONENAT"
 		default y
-endif	
+endif		
+endef
+
+TARGET_CFLAGS += $(if $(CONFIG_PACKAGE_firewall-FULLCONENAT),-DUSE_FULLCONENAT,)
 
 define Package/firewall/description
  This package provides a config-compatible C implementation of the UCI firewall.
