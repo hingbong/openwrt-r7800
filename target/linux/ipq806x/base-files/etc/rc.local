@@ -1,0 +1,18 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+echo performance > /sys/devices/system/cpu/cpufreq/policy1/scaling_governor
+
+echo 800000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
+echo 800000 > /sys/devices/system/cpu/cpufreq/policy1/scaling_max_freq
+sleep 1
+echo 1750000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
+echo 1750000 > /sys/devices/system/cpu/cpufreq/policy1/scaling_max_freq
+
+ethtool -C eth0 tx-usecs 0
+ethtool -C eth1 tx-usecs 0
+ethtool -C eth0 rx-usecs 31
+ethtool -C eth1 rx-usecs 31
+
+exit 0

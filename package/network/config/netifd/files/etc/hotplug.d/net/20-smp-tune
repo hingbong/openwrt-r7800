@@ -1,4 +1,6 @@
 #!/bin/sh
+exit
+
 [ "$ACTION" = add ] || exit
 
 NPROCS="$(grep -c "^processor.*:" /proc/cpuinfo)"
