@@ -15,4 +15,7 @@ ethtool -C eth1 tx-usecs 0
 ethtool -C eth0 rx-usecs 31
 ethtool -C eth1 rx-usecs 31
 
+MTU=$(uci get network.lan.mtu)
+ifconfig eth1 down; ifconfig eth1 mtu $MTU; ifconfig eth1 up
+
 exit 0
