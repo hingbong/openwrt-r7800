@@ -1,6 +1,6 @@
 --- a/local-symbols
 +++ b/local-symbols
-@@ -396,43 +396,6 @@ USB_IPHETH=
+@@ -398,43 +398,6 @@ USB_IPHETH=
  USB_SIERRA_NET=
  USB_VL600=
  USB_NET_CH9200=
@@ -192,7 +192,7 @@
  	select BRCMUTIL
 --- a/Kconfig.local
 +++ b/Kconfig.local
-@@ -1192,117 +1192,6 @@ config BACKPORTED_USB_VL600
+@@ -1198,117 +1198,6 @@ config BACKPORTED_USB_VL600
  config BACKPORTED_USB_NET_CH9200
  	tristate
  	default USB_NET_CH9200
