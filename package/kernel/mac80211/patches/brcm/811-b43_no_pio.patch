@@ -75,7 +75,7 @@
  #endif /* B43_PIO_H_ */
 --- a/drivers/net/wireless/broadcom/b43/Kconfig
 +++ b/drivers/net/wireless/broadcom/b43/Kconfig
-@@ -98,7 +98,7 @@ config B43_BCMA_PIO
+@@ -99,7 +99,7 @@ config B43_BCMA_PIO
  	default y
  
  config B43_PIO

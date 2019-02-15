@@ -21,7 +21,7 @@ Signed-off-by: Gabor Juhos <juhosg@openwrt.org>
  #define RFCSR2_TX2_EN_MT7620		FIELD8(0x20)
 --- a/drivers/net/wireless/ralink/rt2x00/rt2800lib.c
 +++ b/drivers/net/wireless/ralink/rt2x00/rt2800lib.c
-@@ -7865,6 +7865,144 @@ static void rt2800_init_rfcsr_5350(struc
+@@ -7867,6 +7867,144 @@ static void rt2800_init_rfcsr_5350(struc
  	rt2800_rfcsr_write(rt2x00dev, 63, 0x00);
  }
  
@@ -166,7 +166,7 @@ Signed-off-by: Gabor Juhos <juhosg@openwrt.org>
  static void rt2800_init_rfcsr_5390(struct rt2x00_dev *rt2x00dev)
  {
  	rt2800_rf_init_calibration(rt2x00dev, 2);
-@@ -8707,6 +8845,9 @@ static void rt2800_init_rfcsr(struct rt2
+@@ -8709,6 +8847,9 @@ static void rt2800_init_rfcsr(struct rt2
  	case RT3390:
  		rt2800_init_rfcsr_3390(rt2x00dev);
  		break;

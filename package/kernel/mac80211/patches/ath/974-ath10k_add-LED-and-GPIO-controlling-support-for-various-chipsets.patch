@@ -85,7 +85,7 @@ v13:
  create mode 100644 drivers/net/wireless/ath/ath10k/leds.h
 --- a/drivers/net/wireless/ath/ath10k/Kconfig
 +++ b/drivers/net/wireless/ath/ath10k/Kconfig
-@@ -71,6 +71,16 @@ config ATH10K_DEBUGFS
+@@ -70,6 +70,16 @@ config ATH10K_DEBUGFS
  
  	  If unsure, say Y to make it easier to debug problems.
  
@@ -114,7 +114,7 @@ v13:
  ath10k_core-$(CONFIG_DEV_COREDUMP) += coredump.o
 --- a/local-symbols
 +++ b/local-symbols
-@@ -140,6 +140,7 @@ ATH10K_DEBUG=
+@@ -141,6 +141,7 @@ ATH10K_DEBUG=
  ATH10K_DEBUGFS=
  ATH10K_SPECTRAL=
  ATH10K_THERMAL=
@@ -172,7 +172,7 @@ v13:
  		.patch_load_addr = QCA9888_HW_2_0_PATCH_LOAD_ADDR,
  		.uart_pin = 7,
  		.cc_wraparound_type = ATH10K_HW_CC_WRAP_SHIFTED_EACH,
-@@ -2695,6 +2701,10 @@ int ath10k_core_start(struct ath10k *ar,
+@@ -2698,6 +2704,10 @@ int ath10k_core_start(struct ath10k *ar,
  	if (status)
  		goto err_hif_stop;
  
@@ -183,7 +183,7 @@ v13:
  	return 0;
  
  err_hif_stop:
-@@ -2951,9 +2961,18 @@ static void ath10k_core_register_work(st
+@@ -2954,9 +2964,18 @@ static void ath10k_core_register_work(st
  		goto err_spectral_destroy;
  	}
  
@@ -202,7 +202,7 @@ v13:
  err_spectral_destroy:
  	ath10k_spectral_destroy(ar);
  err_debug_destroy:
-@@ -2999,6 +3018,8 @@ void ath10k_core_unregister(struct ath10
+@@ -3002,6 +3021,8 @@ void ath10k_core_unregister(struct ath10
  	if (!test_bit(ATH10K_FLAG_CORE_REGISTERED, &ar->dev_flags))
  		return;
  
@@ -221,7 +221,7 @@ v13:
  
  #include "htt.h"
  #include "htc.h"
-@@ -1147,6 +1148,13 @@ struct ath10k {
+@@ -1153,6 +1154,13 @@ struct ath10k {
  	} testmode;
  
  	struct {
@@ -397,7 +397,7 @@ v13:
 +#endif /* _LEDS_H_ */
 --- a/drivers/net/wireless/ath/ath10k/mac.c
 +++ b/drivers/net/wireless/ath/ath10k/mac.c
-@@ -33,6 +33,7 @@
+@@ -34,6 +34,7 @@
  #include "wmi-tlv.h"
  #include "wmi-ops.h"
  #include "wow.h"
@@ -407,10 +407,10 @@ v13:
  /* Rates */
 --- a/drivers/net/wireless/ath/ath10k/wmi-ops.h
 +++ b/drivers/net/wireless/ath/ath10k/wmi-ops.h
-@@ -219,7 +219,10 @@ struct wmi_ops {
- 	struct sk_buff *(*gen_echo)(struct ath10k *ar, u32 value);
- 	struct sk_buff *(*gen_pdev_get_tpc_table_cmdid)(struct ath10k *ar,
- 							u32 param);
+@@ -222,7 +222,10 @@ struct wmi_ops {
+ 	struct sk_buff *(*gen_bb_timing)
+ 			(struct ath10k *ar,
+ 			 const struct wmi_bb_timing_cfg_arg *arg);
 +	struct sk_buff *(*gen_gpio_config)(struct ath10k *ar, u32 gpio_num,
 +					   u32 input, u32 pull_type, u32 intr_mode);
  
@@ -418,7 +418,7 @@ v13:
  };
  
  int ath10k_wmi_cmd_send(struct ath10k *ar, struct sk_buff *skb, u32 cmd_id);
-@@ -1057,6 +1060,35 @@ ath10k_wmi_force_fw_hang(struct ath10k *
+@@ -1060,6 +1063,35 @@ ath10k_wmi_force_fw_hang(struct ath10k *
  	return ath10k_wmi_cmd_send(ar, skb, ar->wmi.cmd->force_fw_hang_cmdid);
  }
  
@@ -467,7 +467,7 @@ v13:
  static const struct wmi_peer_flags_map wmi_tlv_peer_flags_map = {
 --- a/drivers/net/wireless/ath/ath10k/wmi.c
 +++ b/drivers/net/wireless/ath/ath10k/wmi.c
-@@ -7236,6 +7236,49 @@ ath10k_wmi_op_gen_peer_set_param(struct
+@@ -7295,6 +7295,49 @@ ath10k_wmi_op_gen_peer_set_param(struct
  	return skb;
  }
  
@@ -517,7 +517,7 @@ v13:
  static struct sk_buff *
  ath10k_wmi_op_gen_set_psmode(struct ath10k *ar, u32 vdev_id,
  			     enum wmi_sta_ps_mode psmode)
-@@ -8847,6 +8890,9 @@ static const struct wmi_ops wmi_ops = {
+@@ -8927,6 +8970,9 @@ static const struct wmi_ops wmi_ops = {
  	.fw_stats_fill = ath10k_wmi_main_op_fw_stats_fill,
  	.get_vdev_subtype = ath10k_wmi_op_get_vdev_subtype,
  	.gen_echo = ath10k_wmi_op_gen_echo,
@@ -527,7 +527,7 @@ v13:
  	/* .gen_bcn_tmpl not implemented */
  	/* .gen_prb_tmpl not implemented */
  	/* .gen_p2p_go_bcn_ie not implemented */
-@@ -8917,6 +8963,8 @@ static const struct wmi_ops wmi_10_1_ops
+@@ -8997,6 +9043,8 @@ static const struct wmi_ops wmi_10_1_ops
  	.fw_stats_fill = ath10k_wmi_10x_op_fw_stats_fill,
  	.get_vdev_subtype = ath10k_wmi_op_get_vdev_subtype,
  	.gen_echo = ath10k_wmi_op_gen_echo,
@@ -536,7 +536,7 @@ v13:
  	/* .gen_bcn_tmpl not implemented */
  	/* .gen_prb_tmpl not implemented */
  	/* .gen_p2p_go_bcn_ie not implemented */
-@@ -8988,6 +9036,8 @@ static const struct wmi_ops wmi_10_2_ops
+@@ -9068,6 +9116,8 @@ static const struct wmi_ops wmi_10_2_ops
  	.gen_delba_send = ath10k_wmi_op_gen_delba_send,
  	.fw_stats_fill = ath10k_wmi_10x_op_fw_stats_fill,
  	.get_vdev_subtype = ath10k_wmi_op_get_vdev_subtype,
@@ -545,16 +545,16 @@ v13:
  	/* .gen_pdev_enable_adaptive_cca not implemented */
  };
  
-@@ -9058,6 +9108,8 @@ static const struct wmi_ops wmi_10_2_4_o
- 	.gen_pdev_enable_adaptive_cca =
+@@ -9139,6 +9189,8 @@ static const struct wmi_ops wmi_10_2_4_o
  		ath10k_wmi_op_gen_pdev_enable_adaptive_cca,
  	.get_vdev_subtype = ath10k_wmi_10_2_4_op_get_vdev_subtype,
+ 	.gen_bb_timing = ath10k_wmi_10_2_4_op_gen_bb_timing,
 +	.gen_gpio_config = ath10k_wmi_op_gen_gpio_config,
 +	.gen_gpio_output = ath10k_wmi_op_gen_gpio_output,
  	/* .gen_bcn_tmpl not implemented */
  	/* .gen_prb_tmpl not implemented */
  	/* .gen_p2p_go_bcn_ie not implemented */
-@@ -9137,6 +9189,8 @@ static const struct wmi_ops wmi_10_4_ops
+@@ -9218,6 +9270,8 @@ static const struct wmi_ops wmi_10_4_ops
  	.gen_pdev_bss_chan_info_req = ath10k_wmi_10_2_op_gen_pdev_bss_chan_info,
  	.gen_echo = ath10k_wmi_op_gen_echo,
  	.gen_pdev_get_tpc_config = ath10k_wmi_10_2_4_op_gen_pdev_get_tpc_config,
@@ -565,7 +565,7 @@ v13:
  int ath10k_wmi_attach(struct ath10k *ar)
 --- a/drivers/net/wireless/ath/ath10k/wmi.h
 +++ b/drivers/net/wireless/ath/ath10k/wmi.h
-@@ -2960,6 +2960,41 @@ enum wmi_10_4_feature_mask {
+@@ -2975,6 +2975,41 @@ enum wmi_10_4_feature_mask {
  
  };
  
