@@ -103,7 +103,7 @@ Signed-off-by: Tomislav Požega <pozega.tomislav@gmail.com>
 
 --- a/drivers/net/wireless/ralink/rt2x00/rt2800lib.c
 +++ b/drivers/net/wireless/ralink/rt2x00/rt2800lib.c
-@@ -5814,7 +5814,7 @@ static int rt2800_init_registers(struct
+@@ -5816,7 +5816,7 @@ static int rt2800_init_registers(struct
  		rt2800_register_write(rt2x00dev, TX_SW_CFG2, 0x00000000);
  		rt2800_register_write(rt2x00dev, MIMO_PS_CFG, 0x00000002);
  		rt2800_register_write(rt2x00dev, TX_PIN_CFG, 0x00150F0F);
