@@ -20,7 +20,7 @@ netgear,r7800 |\
 qcom,ipq8064-ap148 |\
 tplink,c2600 |\
 tplink,vr2600v)
-	ucidef_set_interface_lan "eth1 lan1 lan2 lan3 lan4"
+	ucidef_set_interface_lan "eth1"
 	ucidef_set_interface_wan "eth0"
 	;;
 linksys,ea8500)
