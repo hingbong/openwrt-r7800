@@ -15,7 +15,7 @@ DEVICE_TYPE?=router
 # Default packages - the really basic set
 DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd kmod-nf-nathelper kmod-nf-nathelper-extra ethtool \
 openssl-util iperf3 ipv6helper default-settings \
-luci luci-app-upnp luci-app-ssr-plus luci-app-flowoffload \
+luci luci-app-upnp luci-app-flowoffload \
 luci-app-vlmcsd
 # For nas targets
 DEFAULT_PACKAGES.nas:=block-mount fdisk lsblk mdadm
