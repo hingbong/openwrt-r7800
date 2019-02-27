@@ -10,6 +10,7 @@ config BINUTILS_VERSION_2_31_1
 	bool
 
 config BINUTILS_VERSION_2_32
+    default y
 	bool
 
 config BINUTILS_VERSION
