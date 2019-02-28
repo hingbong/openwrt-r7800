@@ -1207,6 +1207,7 @@ CONFIG_DQL=y
 # CONFIG_DRM_PL111 is not set
 # CONFIG_DRM_QXL is not set
 # CONFIG_DRM_RADEON is not set
+# CONFIG_DRM_RADEON_USERPTR is not set
 # CONFIG_DRM_RCAR_DW_HDMI is not set
 # CONFIG_DRM_SII902X is not set
 # CONFIG_DRM_SIL_SII8620 is not set
