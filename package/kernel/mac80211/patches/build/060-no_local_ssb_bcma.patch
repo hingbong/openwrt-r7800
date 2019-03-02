@@ -1,9 +1,9 @@
 --- a/local-symbols
 +++ b/local-symbols
-@@ -396,43 +396,6 @@ USB_IPHETH=
- USB_SIERRA_NET=
+@@ -400,43 +400,6 @@ USB_SIERRA_NET=
  USB_VL600=
  USB_NET_CH9200=
+ USB_NET_AQC111=
 -SSB_POSSIBLE=
 -SSB=
 -SSB_SPROM=
@@ -46,7 +46,7 @@
  USB_WDM=
 --- a/drivers/net/wireless/broadcom/b43/Kconfig
 +++ b/drivers/net/wireless/broadcom/b43/Kconfig
-@@ -61,21 +61,21 @@ endchoice
+@@ -62,21 +62,21 @@ endchoice
  config B43_PCI_AUTOSELECT
  	bool
  	depends on B43 && SSB_PCIHOST_POSSIBLE
@@ -72,7 +72,7 @@
  	---help---
  	  Broadcom 43xx device support for Soft-MAC SDIO devices.
  
-@@ -94,13 +94,13 @@ config B43_SDIO
+@@ -95,13 +95,13 @@ config B43_SDIO
  config B43_BCMA_PIO
  	bool
  	depends on B43 && B43_BCMA
@@ -192,10 +192,10 @@
  	select BRCMUTIL
 --- a/Kconfig.local
 +++ b/Kconfig.local
-@@ -1192,117 +1192,6 @@ config BACKPORTED_USB_VL600
- config BACKPORTED_USB_NET_CH9200
+@@ -1204,117 +1204,6 @@ config BACKPORTED_USB_NET_CH9200
+ config BACKPORTED_USB_NET_AQC111
  	tristate
- 	default USB_NET_CH9200
+ 	default USB_NET_AQC111
 -config BACKPORTED_SSB_POSSIBLE
 -	tristate
 -	default SSB_POSSIBLE
