@@ -40,23 +40,6 @@
   *	This is also used for capability advertisement in the wiphy information,
   *	with the appropriate sub-attributes.
   *
-+ * @NL80211_ATTR_FTM_RESPONDER: nested attribute which user-space can include
-+ *	in %NL80211_CMD_START_AP or %NL80211_CMD_SET_BEACON for fine timing
-+ *	measurement (FTM) responder functionality and containing parameters as
-+ *	possible, see &enum nl80211_ftm_responder_attr
-+ *
-+ * @NL80211_ATTR_FTM_RESPONDER_STATS: Nested attribute with FTM responder
-+ *	statistics, see &enum nl80211_ftm_responder_stats.
-+ *
-+ * @NL80211_ATTR_TIMEOUT: Timeout for the given operation in milliseconds (u32),
-+ *	if the attribute is not given no timeout is requested. Note that 0 is an
-+ *	invalid value.
-+ *
-+ * @NL80211_ATTR_PEER_MEASUREMENTS: peer measurements request (and result)
-+ *	data, uses nested attributes specified in
-+ *	&enum nl80211_peer_measurement_attrs.
-+ *	This is also used for capability advertisement in the wiphy information,
-+ *	with the appropriate sub-attributes.
 + * @NL80211_ATTR_WIPHY_ANTENNA_GAIN: Configured antenna gain. Used to reduce
 + *	transmit power to stay within regulatory limits. u32, dBi.
 + *
@@ -67,14 +50,6 @@
  
  	NL80211_ATTR_PEER_MEASUREMENTS,
  
-+	NL80211_ATTR_FTM_RESPONDER,
-+
-+	NL80211_ATTR_FTM_RESPONDER_STATS,
-+
-+	NL80211_ATTR_TIMEOUT,
-+
-+	NL80211_ATTR_PEER_MEASUREMENTS,
-+
 +	NL80211_ATTR_WIPHY_ANTENNA_GAIN,
 +
  	/* add attributes here, update the policy in nl80211.c */
