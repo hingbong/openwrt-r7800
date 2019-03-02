@@ -35,7 +35,8 @@ define Device/Default
   PROFILES := Default
   DEVICE_DTS := $(1)
   KERNEL_DEPENDS = $$(wildcard $(DTS_DIR)/$$(DEVICE_DTS).dts)
-  KERNEL_ENTRY := 0x00000000
+  KERNEL_ENTRY := 0x1000000
+#  KERNEL_ENTRY := 0x00000000
   KERNEL_LOADADDR := 0x00000000
   KERNEL := kernel-bin
 endef
@@ -48,11 +49,16 @@ define Device/tl-wdr4900-v1
   TPLINK_HWID := 0x49000001
   TPLINK_HWREV := 1
   TPLINK_FLASHLAYOUT := 16Mppc
-  KERNEL_NAME := cuImage.tl-wdr4900-v1
+  KERNEL_SIZE := 2684k
+  KERNEL_NAME := simpleImage.tl-wdr4900-v1
   KERNEL_INITRAMFS :=
+  KERNEL := kernel-bin | uImage none
+  KERNEL_ENTRY := 0x1000000
+  KERNEL_LOADADDR := 0x1000000
   SUPPORTED_DEVICES:=tl-wdr4900-v1 tplink,tl-wdr4900-v1
+  ARTIFACTS := fdt.bin
+  ARTIFACT/fdt.bin := append-dtb
   IMAGES := fdt.bin factory.bin sysupgrade.bin
-  IMAGE/fdt.bin := append-dtb
   IMAGE/sysupgrade.bin := append-rootfs | mktplinkfw sysupgrade | append-metadata
   IMAGE/factory.bin := append-rootfs | mktplinkfw factory
 endef
