@@ -1,0 +1,8 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+echo 800000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+echo 800000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+echo 20 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+
+exit 0
