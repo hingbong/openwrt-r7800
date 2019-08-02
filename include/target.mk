@@ -14,16 +14,17 @@ DEVICE_TYPE?=router
 
 # Default packages - the really basic set
 DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd urandom-seed urngd \
-kmod-nf-nathelper kmod-nf-nathelper-extra ethtool kmod-nf-nat6 curl iptables-mod-conntrack-extra \
-openssl-util iperf3 default-settings hostapd-utils \
-luci luci-app-upnp luci-app-vlmcsd \
+kmod-nf-nathelper kmod-nf-nathelper-extra ethtool kmod-nf-nat6 curl iptables-mod-conntrack-extra kmod-nls-utf8  kmod-gre\
+openssl-util iperf3 default-settings hostapd-utils luci  ZSTD_OPTIMIZE_O3 LIBCURL_OPENSSL libelf libncurses libpcre \
 luci-app-statistics collectd-mod-conntrack collectd-mod-cpufreq collectd-mod-entropy collectd-mod-ping collectd-mod-thermal \
-collectd-mod-uptime
+collectd-mod-uptime luci-proto-bonding
 # For nas targets
 DEFAULT_PACKAGES.nas:=block-mount fdisk lsblk mdadm
 # For router targets
 DEFAULT_PACKAGES.router:=dnsmasq-full iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-ipt-offload kmod-tcp-bbr \
-wpad-openssl 
+wpad-openssl luci-app-upnp luci-app-vlmcsd kmod-crypto-aead kmod-crypto-crc32c kmod-crypto-des kmod-crypto-ecb kmod-crypto-hash \
+kmod-crypto-hmac kmod-crypto-manager kmod-crypto-md4 kmod-crypto-md5 kmod-crypto-null kmod-crypto-pcompress kmod-crypto-sha1 \
+kmod-crypto-sha256 kmod-crypto-sha512 kmod-lib-crc16
 DEFAULT_PACKAGES.bootloader:=
 
 ifneq ($(DUMP),)
