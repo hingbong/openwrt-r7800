@@ -186,21 +186,25 @@
  struct private_data {
  	struct opp_table *opp_table;
  	struct device *cpu_dev;
-@@ -44,9 +47,70 @@ static struct freq_attr *cpufreq_dt_attr
+@@ -44,14 +44,67 @@ static struct freq_attr *cpufreq_dt_attr[] = {
  static int set_target(struct cpufreq_policy *policy, unsigned int index)
  {
  	struct private_data *priv = policy->driver_data;
+-	unsigned long freq = policy->freq_table[index].frequency;
 +	struct clk *l2_clk = policy->l2_clk;
 +	struct regulator *l2_regulator = policy->l2_regulator;
 +	unsigned long target_freq = policy->freq_table[index].frequency * 1000;
-+	int ret;
-+	
+ 	int ret;
+ 
+-	ret = dev_pm_opp_set_rate(priv->cpu_dev, freq * 1000);
 +	ret = dev_pm_opp_set_rate(priv->cpu_dev, target_freq);
-+
-+	if (!ret) {
+ 
+ 	if (!ret) {
+-		arch_set_freq_scale(policy->related_cpus, freq,
+-				    policy->cpuinfo.max_freq);
 +		unsigned long max_cpu_freq = max(target_freq,
 +						 clk_get_rate(per_cpu(cpu_cores_clks, !policy->cpu)));
-+		
++
 +		if (policy->l2_rate_set) {
 +			unsigned long new_l2_freq = 0, new_l2_volt = 0;
 +			static unsigned long last_l2_freq = 0;
@@ -208,8 +212,8 @@
 +			int i, tol = 0;
 +
 +			/* Unlike regulators, clock rate is adjusted on any request. Let's pick
-+			 * the highest core frequency and set the L2 cache frequency, so we 
-+			 * don't pull the L2 cache frequency down prematurely if either cores is 
++			 * the highest core frequency and set the L2 cache frequency, so we
++			 * don't pull the L2 cache frequency down prematurely if either cores is
 +			 * running at max.
 +			 */
 +
@@ -251,11 +255,9 @@
 +		}
 +
 +		scale_fabrics(max_cpu_freq);
-+	}
+ 	}
  
--	return dev_pm_opp_set_rate(priv->cpu_dev,
--				   policy->freq_table[index].frequency * 1000);
-+	return ret;
+ 	return ret;
  }
  
  /*
